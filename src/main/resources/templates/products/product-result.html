@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sản phẩm vừa nhập</title>
+    <style>
+        body {
+            font: 16px Arial;
+            max-width: 760px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #172033;
+        }
+
+        .card {
+            padding: 22px;
+            border: 1px solid #d9e0ea;
+            border-radius: 12px;
+        }
+
+        a {
+            display: inline-block;
+            margin: 8px;
+            padding: 10px 14px;
+            background: #175cd3;
+            color: white;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sản phẩm vừa nhập</h1>
+    <div class="card">
+        <p>Mã sản phẩm: <strong th:text="${product.productId}"></strong></p>
+        <p>Tên sản phẩm: <strong th:text="${product.productName}"></strong></p>
+        <p>Giá: <strong th:text="${product.price}"></strong></p>
+        <p>Số lượng: <strong th:text="${product.quantity}"></strong></p>
+        <p>Mã loại: <strong th:text="${product.categoryId}"></strong></p>
+        <p>Trạng thái: <strong th:text="${product.active} ? 'Còn bán' : 'Ngừng bán'"></strong></p>
+        <p>Thành tiền tạm tính: <strong th:text="${subtotal}"></strong></p>
+    </div>
+    <a th:href="@{/products/new}">Nhập sản phẩm khác</a>
+    <a th:href="@{/}">Trang chủ</a>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lab 2 - Spring Boot Controller</title>
+    <style>
+        body {
+            font: 16px Arial, sans-serif;
+            max-width: 900px;
+            margin: 48px auto;
+            padding: 0 20px;
+            color: #172033;
+        }
+
+        header {
+            padding: 28px;
+            background: #eef4ff;
+            border-radius: 14px;
+        }
+
+        nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        a {
+            padding: 18px;
+            border: 1px solid #d9e0ea;
+            border-radius: 12px;
+            color: #175cd3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            background: #f7f9fc;
+        }
+
+        small {
+            display: block;
+            color: #526078;
+            margin-top: 7px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lab 2: Spring Boot Controller</h1>
+        <p>Thực hành ánh xạ request, đọc tham số, truyền dữ liệu sang view và điều hướng.</p>
+    </header>
+    <nav>
+        <a th:href="@{/dashboard}">
+            <b>Bài 4 · Dashboard</b>
+            <small>Model và @ModelAttribute</small>
+        </a>
+        <a th:href="@{/request-demo}">
+            <b>Bài 1 · Request Demo</b>
+            <small>GET, POST, URL và handler</small>
+        </a>
+        <a th:href="@{/products/search}">
+            <b>Bài 2 · Tìm kiếm</b>
+            <small>@PathVariable, @RequestParam, Optional</small>
+        </a>
+        <a th:href="@{/products/new}">
+            <b>Bài 3 · Nhập sản phẩm</b>
+            <small>@ModelAttribute và kiểm tra dữ liệu</small>
+        </a>
+        <a th:href="@{/navigation/guide}">
+            <b>Bài 5 · Điều hướng</b>
+            <small>View, forward, redirect, @ResponseBody</small>
+        </a>
+    </nav>
+</body>
+</html>

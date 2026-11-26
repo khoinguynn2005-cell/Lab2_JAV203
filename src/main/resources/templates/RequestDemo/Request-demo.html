@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Request Demo</title>
+    <style>
+        body {
+            font: 16px Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #172033;
+        }
+
+        section {
+            padding: 20px;
+            margin: 18px 0;
+            border: 1px solid #d9e0ea;
+            border-radius: 12px;
+        }
+
+        a,
+        button {
+            display: inline-block;
+            margin: 6px;
+            padding: 10px 14px;
+            background: #175cd3;
+            color: white;
+            text-decoration: none;
+            border: 0;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        input {
+            padding: 9px;
+            border: 1px solid #bbc5d3;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Demo điều hướng request</h1>
+    <p>Thử GET, POST và tham số trên URL trong Controller.</p>
+
+    <section>
+        <h2>Danh sách sản phẩm</h2>
+        <a th:href="@{/request-demo/products}">Gửi GET xem danh sách</a>
+    </section>
+
+    <section>
+        <h2>Thêm sản phẩm</h2>
+        <form th:action="@{/request-demo/products}" method="post">
+            <label>
+                Tên sản phẩm
+                <input name="productName" value="Sản phẩm mẫu">
+            </label>
+            <button type="submit">Gửi POST thêm sản phẩm</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Tìm kiếm sản phẩm (GET)</h2>
+        <form th:action="@{/request-demo/search}" method="get">
+            <label>
+                Từ khóa
+                <input name="keyword" placeholder="laptop">
+            </label>
+            <button type="submit">Tìm kiếm</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Request có biến đường dẫn</h2>
+        <a th:href="@{/request-demo/category/CAT01}">Mở sản phẩm loại CAT01</a>
+    </section>
+
+    <section th:if="${requestMethod != null}">
+        <h2>Kết quả request</h2>
+        <p>Phương thức: <strong th:text="${requestMethod}"></strong></p>
+        <p>URL đã gọi: <code th:text="${requestUrl}"></code></p>
+        <p>Phương thức Controller: <code th:text="${handler}"></code></p>
+        <p>Thao tác: <span th:text="${action}"></span></p>
+        <p th:if="${keyword != null}">Từ khóa: <span th:text="${keyword}"></span></p>
+        <p th:if="${categoryId != null}">Mã loại: <span th:text="${categoryId}"></span></p>
+        <p th:if="${productName != null}">Sản phẩm gửi lên: <span th:text="${productName}"></span></p>
+    </section>
+
+    <p><a th:href="@{/}">Về trang chủ</a></p>
+</body>
+</html>

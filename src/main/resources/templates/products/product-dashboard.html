@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quản lý sản phẩm</title>
+    <style>
+        body {
+            font: 16px Arial;
+            max-width: 1100px;
+            margin: 36px auto;
+            padding: 0 20px;
+            color: #172033;
+        }
+
+        header {
+            padding: 24px;
+            background: #eef4ff;
+            border-radius: 14px;
+        }
+
+        section {
+            margin: 22px 0;
+            padding: 20px;
+            border: 1px solid #d9e0ea;
+            border-radius: 12px;
+        }
+
+        .grid {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            padding: 14px;
+            background: #f7f9fc;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #e2e7ef;
+        }
+
+        a,
+        button {
+            display: inline-block;
+            margin: 6px;
+            padding: 10px 14px;
+            background: #175cd3;
+            color: white;
+            border: 0;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+
+        input {
+            padding: 9px;
+            border: 1px solid #bbc5d3;
+            border-radius: 6px;
+        }
+
+        .notice {
+            padding: 14px;
+            background: #eaf9ed;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Quản lý sản phẩm</h1>
+        <p th:text="${welcomeMessage}"></p>
+    </header>
+
+    <p class="notice" th:if="${navigationNotice != null}" th:text="${navigationNotice}"></p>
+
+    <section>
+        <h2>Sản phẩm nổi bật hôm nay</h2>
+        <p>
+            <strong th:text="${featuredProduct.productName}"></strong>
+            —
+            <span th:text="${featuredProduct.price}"></span> đồng
+        </p>
+    </section>
+
+    <section>
+        <h2>Sản phẩm mẫu</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Loại</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${sampleProducts}">
+                    <td th:text="${product.productId}"></td>
+                    <td th:text="${product.productName}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.quantity}"></td>
+                    <td th:text="${product.categoryId}"></td>
+                    <td th:text="${product.active} ? 'Còn bán' : 'Ngừng bán'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Loại sản phẩm</h2>
+        <ul>
+            <li
+                th:each="category : ${sampleCategories}"
+                th:text="|${category.categoryId} - ${category.categoryName}|"
+            ></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Tổng quan kho</h2>
+        <div class="grid">
+            <div class="stat">
+                Tổng số sản phẩm: <strong th:text="${productCount}"></strong>
+            </div>
+            <div class="stat">
+                Tổng giá trị tồn kho tạm tính:
+                <strong th:text="${inventoryValue}"></strong> đồng
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Thực hành các bài</h2>
+        <a th:href="@{/request-demo}">Bài 1: Request demo</a>
+        <a th:href="@{/products/search}">Bài 2: Tìm kiếm</a>
+        <a th:href="@{/products/new}">Bài 3: Nhập sản phẩm</a>
+        <a th:href="@{/navigation/guide}">Bài 5: Điều hướng</a>
+    </section>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tìm sản phẩm</title>
+    <style>
+        body {
+            font: 16px Arial;
+            max-width: 760px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #172033;
+        }
+
+        form {
+            display: grid;
+            gap: 14px;
+            padding: 22px;
+            border: 1px solid #d9e0ea;
+            border-radius: 12px;
+        }
+
+        label {
+            display: grid;
+            gap: 6px;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #bbc5d3;
+            border-radius: 6px;
+        }
+
+        button,
+        a {
+            padding: 10px 14px;
+            background: #175cd3;
+            color: white;
+            border: 0;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+
+        .category a {
+            display: inline-block;
+            margin: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tìm kiếm sản phẩm</h1>
+    <p>Mã loại được truyền trong URL; từ khóa, trang và kích thước trang là query parameters.</p>
+
+    <p class="category">
+        Chọn mã loại:
+        <a th:href="@{/products/category/CAT01/search}">CAT01</a>
+        <a th:href="@{/products/category/CAT02/search}">CAT02</a>
+        <a th:href="@{/products/category/CAT03/search}">CAT03</a>
+    </p>
+
+    <form th:action="@{/products/category/CAT01/search}" method="get">
+        <label>
+            Từ khóa
+            <input name="keyword" placeholder="laptop">
+        </label>
+        <label>
+            Trang hiện tại
+            <input type="number" name="page" min="0" placeholder="Mặc định 0">
+        </label>
+        <label>
+            Số sản phẩm mỗi trang
+            <input type="number" name="size" min="1" placeholder="Mặc định 5">
+        </label>
+        <button type="submit">Tìm kiếm (CAT01)</button>
+    </form>
+
+    <p><a th:href="@{/}">Về trang chủ</a></p>
+</body>
+</html>

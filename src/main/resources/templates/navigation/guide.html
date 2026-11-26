@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Điều hướng trong Spring MVC</title>
+    <style>
+        body {
+            font: 16px Arial;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #172033;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        a,
+        button {
+            display: inline-block;
+            margin: 6px;
+            padding: 10px 14px;
+            background: #175cd3;
+            color: white;
+            border: 0;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+
+        form {
+            margin: 18px 0;
+            padding: 18px;
+            background: #f7f9fc;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 9px;
+            border: 1px solid #bbc5d3;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bài 5: Luồng điều hướng</h1>
+    <ul>
+        <li><b>View thông thường</b>: trả tên template; model được render trong response hiện tại.</li>
+        <li><b>forward</b>: server chuyển tiếp cùng request; URL trình duyệt giữ nguyên và request attributes/model có thể dùng tiếp.</li>
+        <li><b>redirect</b>: trình duyệt tạo request mới đến URL đích; phù hợp Post/Redirect/Get, model thông thường không đi theo.</li>
+        <li><b>@ResponseBody</b>: trả chuỗi/dữ liệu trực tiếp trong response, không tìm template.</li>
+    </ul>
+
+    <a th:href="@{/navigation/success}">View thông báo</a>
+    <a th:href="@{/navigation/intermediate}">Thử forward</a>
+    <a th:href="@{/navigation/redirect}">Thử redirect</a>
+    <a th:href="@{/navigation/status}">Thử ResponseBody</a>
+
+    <form th:action="@{/navigation/products}" method="post">
+        <label>
+            Thêm sản phẩm rồi redirect:
+            <input name="productName" value="Sản phẩm demo">
+        </label>
+        <button type="submit">Thêm (POST → Redirect)</button>
+    </form>
+
+    <a th:href="@{/}">Trang chủ</a>
+</body>
+</html>
